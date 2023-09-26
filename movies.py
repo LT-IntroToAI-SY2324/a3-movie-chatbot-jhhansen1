@@ -2,7 +2,6 @@
 # Introduction to Computer Science Using Scheme, by Max Hailperin, Barbara Kaiser, and
 # Karl Knight, Copyright (c) 1998 by the authors. Full text is available for free at
 # http://www.gustavus.edu/+max/concrete-abstractions.html
-
 # the Scheme file, Revision 1.3 as of 2005/12/20 14:09:37, has been reformated for
 # Python. The original file is available as
 # http://www.gustavus.edu/academics/mcs/max/concabs/code/movie.scm
