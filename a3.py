@@ -78,7 +78,6 @@ def title_by_year_range(matches: List[str]) -> List[str]:
     for i in movie_db:
         if get_year(i)>=int(matches[0]) and get_year(i)<=int(matches[1]):
              moviesInRange.append(get_title(i))
-    print(moviesInRange)
     return moviesInRange
 
 
@@ -95,9 +94,8 @@ def title_before_year(matches: List[str]) -> List[str]:
     """
     moviesBeforeYear=[]
     for i in movie_db:
-        if get_year(i)>int(matches[0]):
+        if get_year(i)<int(matches[0]):
              moviesBeforeYear.append(get_title(i))
-    print(moviesBeforeYear)
     return moviesBeforeYear
 
 
@@ -112,7 +110,11 @@ def title_after_year(matches: List[str]) -> List[str]:
         a list of movie titles made after the passed in year, exclusive (meaning if you
         pass in 1992 you won't get any movies made that year, only after)
     """
-    pass
+    moviesAfterYear=[]
+    for i in movie_db:
+        if get_year(i)>int(matches[0]):
+             moviesAfterYear.append(get_title(i))
+    return moviesAfterYear
 
 
 def director_by_title(matches: List[str]) -> List[str]:
@@ -124,7 +126,12 @@ def director_by_title(matches: List[str]) -> List[str]:
     Returns:
         a list of 1 string, the director of the movie
     """
-    pass
+    movieDirector=[]
+    for i in movie_db:
+        if get_title(i)==matches[0]:
+            movieDirector.append(get_director(i))
+    return movieDirector
+
 
 
 def title_by_director(matches: List[str]) -> List[str]:
@@ -136,7 +143,12 @@ def title_by_director(matches: List[str]) -> List[str]:
     Returns:
         a list of movies titles directed by the passed in director
     """
-    pass
+    directorMovies=[]
+    for i in movie_db:
+        if get_director(i)==matches[0]:
+            directorMovies.append(get_title(i))
+    print(directorMovies)
+    return directorMovies
 
 
 def actors_by_title(matches: List[str]) -> List[str]:
@@ -148,7 +160,13 @@ def actors_by_title(matches: List[str]) -> List[str]:
     Returns:
         a list of actors who acted in the passed in title
     """
-    pass
+    movieActors=[]
+    for i in movie_db:
+        if get_title(i)==matches[0]:
+           for j in get_actors(i):
+             movieActors.append(j)
+    return movieActors
+
 
 
 def year_by_title(matches: List[str]) -> List[int]:
@@ -160,7 +178,11 @@ def year_by_title(matches: List[str]) -> List[int]:
     Returns:
         a list of one item (an int), the year that the movie was made
     """
-    pass
+    movieYear=[]
+    for i in movie_db:
+        if get_title(i)==matches[0]:
+            movieYear.append(get_year(i))
+    return movieYear
 
 
 def title_by_actor(matches: List[str]) -> List[str]:
@@ -172,7 +194,12 @@ def title_by_actor(matches: List[str]) -> List[str]:
     Returns:
         a list of movie titles that the actor acted in
     """
-    pass
+    moviesWithActor=[]
+    for i in movie_db:
+        for j in get_actors(i):
+         if matches[0]==j:
+             moviesWithActor.append(get_title(i))
+    return moviesWithActor
 
 
 # dummy argument is ignored and doesn't matter
@@ -211,9 +238,14 @@ def search_pa_list(src: List[str]) -> List[str]:
         a list of answers. Will be ["I don't understand"] if it finds no matches and
         ["No answers"] if it finds a match but no answers
     """
-    pass
-
-
+    answers=[]
+    if match(pa_list,src)==None:
+        answers.append("I don't understand")
+    elif(match(pa_list,src)):
+        answers.append("No answers")
+    else:
+        answers.append(match(pa_list,src))
+        # how do you get the specific action from pa list pattern that matched
 def query_loop() -> None:
     """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
     characters and exit gracefully.
