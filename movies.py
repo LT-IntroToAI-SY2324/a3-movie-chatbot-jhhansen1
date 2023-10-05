@@ -434,4 +434,17 @@ movie_db: List[Tuple[str, str, int, List[str]]] = [
             "spike lee",
         ],
     )
+    (
+        "ocean's eleven",
+        "steven soderbergh",
+        2001,
+        [
+            "george clooney",
+            "matt damon",
+            "andy garcia",
+            "brad pitt",
+            "julia roberts",
+            "casey affleck",
+        ],
+    )
 ]
